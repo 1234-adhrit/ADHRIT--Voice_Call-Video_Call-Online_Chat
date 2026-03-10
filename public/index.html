@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CallSpace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background">
+      <span class="orb orb-one"></span>
+      <span class="orb orb-two"></span>
+      <span class="orb orb-three"></span>
+    </div>
+
+    <main class="app">
+      <header class="header">
+        <div>
+          <p class="eyebrow">Business Grade Voice and Video</p>
+          <h1>CallSpace</h1>
+        </div>
+        <div class="status-pill" id="connectionStatus">Offline</div>
+      </header>
+
+      <section class="card setup" aria-label="Call setup">
+        <h2>Get Started</h2>
+        <p class="muted">
+          Enter your name to start or join a call. This keeps each room
+          professional and organized.
+        </p>
+
+        <label class="field">
+          <span>Your Name</span>
+          <input
+            id="displayName"
+            type="text"
+            placeholder="Example: Priya Sharma"
+            autocomplete="name"
+          />
+        </label>
+
+        <div class="call-type">
+          <button class="pill active" data-type="video" id="typeVideo">
+            Video
+          </button>
+          <button class="pill" data-type="voice" id="typeVoice">Voice</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" id="startVideo">Start Video Call</button>
+          <button class="secondary" id="startVoice">Start Voice Call</button>
+        </div>
+
+        <div class="join">
+          <label class="field">
+            <span>Room Code</span>
+            <input id="roomCode" type="text" placeholder="Enter code" />
+          </label>
+          <button class="primary" id="joinCall">Join Call</button>
+        </div>
+
+        <p class="hint" id="nameHint">
+          Name is required before you can start or join.
+        </p>
+      </section>
+
+      <section class="room">
+        <div class="video-grid">
+          <div class="video-card">
+            <video id="localVideo" autoplay muted playsinline></video>
+            <div class="video-label" id="localLabel">You</div>
+            <div class="video-badge" id="localBadge">Local</div>
+          </div>
+          <div class="video-card">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <div class="video-label" id="remoteLabel">Waiting for a guest</div>
+            <div class="video-badge" id="remoteBadge">Remote</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="toggleMic">Mute</button>
+          <button id="toggleCam">Camera Off</button>
+          <button class="danger" id="endCall">End Call</button>
+        </div>
+
+        <div class="card room-info">
+          <div>
+            <p class="eyebrow">Room Code</p>
+            <h3 id="roomCodeDisplay">-</h3>
+          </div>
+          <button class="secondary" id="copyCode">Copy Code</button>
+        </div>
+      </section>
+
+      <section class="card chat" aria-label="Chat">
+        <div class="chat-header">
+          <h2>Team Chat</h2>
+          <span class="muted" id="chatStatus">Waiting for call</span>
+        </div>
+
+        <div class="messages" id="chatMessages"></div>
+
+        <div class="chat-input">
+          <input
+            id="chatText"
+            type="text"
+            placeholder="Write a message"
+          />
+          <input id="chatImage" type="file" accept="image/*" hidden />
+          <button class="secondary" id="attachImage">Send Image</button>
+          <button class="primary" id="sendMessage">Send</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
